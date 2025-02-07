@@ -12,7 +12,7 @@ export const fetchProducts = async () => {
 };
 
 const PEXELS_API_KEY =
-  'MT6U56AKkZg0NEAZYXckXFxpeizoZ63x3JCTJLfS8HUFFnCBGqmPJiew'; // Replace with your API key
+  'MT6U56AKkZg0NEAZYXckXFxpeizoZ63x3JCTJLfS8HUFFnCBGqmPJiew';
 const PEXELS_API_URL = 'https://api.pexels.com/v1/search';
 
 /**
@@ -25,7 +25,7 @@ export const fetchJewelryImages = async () => {
         Authorization: PEXELS_API_KEY,
       },
       params: {
-        query: 'jewelry',
+        query: 'products',
         per_page: 100,
       },
     });

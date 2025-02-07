@@ -18,7 +18,7 @@ const HeroSlider = () => {
   }, []);
 
   return (
-    <div className='flex items-center w-full max-w-sm mx-auto pr-10'>
+    <div className='items-center w-full max-w-sm mx-auto pr-10 hidden md:block'>
       {images.length > 0 ? (
         <Swiper
           modules={[Autoplay]}

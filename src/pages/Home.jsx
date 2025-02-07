@@ -1,11 +1,14 @@
+import ProductGallery from '../Components/ProductGallery';
 import { IoBagHandleOutline } from 'react-icons/io5';
 import HeroSlider from '../utils/HeroSlider';
 import { FiSearch } from 'react-icons/fi';
 import { IoMdArrowDropdown } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
-    <div className='flex flex-col text-black justify-center'>
+    <div className='flex flex-col text-black justify-center items-center'>
       <div className='flex justify-between bg-gray1 w-280 h-70 pl-4 pt-6 rounded-3xl'>
         <div className='flex flex-col gap-3'>
           <h1 className='text-[45px] font-[800] text-primary'>
@@ -49,6 +52,15 @@ const Home = () => {
           <IoMdArrowDropdown />
         </button>
       </div>
+      <div>
+        <ProductGallery />
+      </div>
+      <button
+        className='rounded-lg border border-black w-27 h-9 mt-2 text-sm hover:bg-primary hover:transform duration-300 active:bg-red-300'
+        onClick={() => navigate('/products')}
+      >
+        Show More
+      </button>
     </div>
   );
 };
