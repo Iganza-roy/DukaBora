@@ -1,9 +1,11 @@
 import { IoBagHandleOutline } from 'react-icons/io5';
 import HeroSlider from '../utils/HeroSlider';
+import { FiSearch } from 'react-icons/fi';
+import { IoMdArrowDropdown } from 'react-icons/io';
 
 const Home = () => {
   return (
-    <div className='flex text-black justify-center'>
+    <div className='flex flex-col text-black justify-center'>
       <div className='flex justify-between bg-gray1 w-280 h-70 pl-4 pt-6 rounded-3xl'>
         <div className='flex flex-col gap-3'>
           <h1 className='text-[45px] font-[800] text-primary'>
@@ -20,6 +22,32 @@ const Home = () => {
           </button>
         </div>
         <HeroSlider />
+      </div>
+      <div className='flex justify-center items-center mt-5 gap-10'>
+        <div className='bg-white flex rounded-4xl w-70 h-10 justify-between items-center p-3'>
+          <form action=''>
+            <input
+              type='text'
+              placeholder='Search Products'
+              className='text-gray-700 border-none outline-none w-60'
+            />
+            <button type='submit'>
+              <FiSearch className='text-black hover:text-red-400 hover:transform duration-300 cursor-pointer' />
+            </button>
+          </form>
+        </div>
+        <button className='flex justify-center items-center bg-white w-27 h-10 rounded-4xl'>
+          <span>Category</span>
+          <IoMdArrowDropdown />
+        </button>
+        <button className='flex justify-center items-center bg-white w-30 h-10 rounded-4xl'>
+          <span>Popularity</span>
+          <IoMdArrowDropdown />
+        </button>
+        <button className='flex justify-center items-center bg-white w-25 h-10 rounded-4xl'>
+          <span>Price</span>
+          <IoMdArrowDropdown />
+        </button>
       </div>
     </div>
   );
