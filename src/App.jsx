@@ -1,5 +1,17 @@
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ClerkProvider } from '@clerk/clerk-react';
+import AppRoutes from './routes';
+
+const clerkKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
 const App = () => {
-  return <div className='text-red-500 font-bold text-3xl'>MAJOR</div>;
+  return (
+    <ClerkProvider publishableKey={clerkKey}>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </ClerkProvider>
+  );
 };
 
 export default App;
