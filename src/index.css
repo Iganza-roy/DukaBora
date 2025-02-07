@@ -1,8 +1,21 @@
 @import 'tailwindcss';
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@import 'tailwindcss';
+
+@theme {
+  --color-gray1: #d9d9d9;
+  --color-gray2: #ebebeb;
+  --color-primary: #ff5757;
+
+  --text-shadow-sm: 0 1px 2px #020617;
+  --text-shadow: 0 2px 4px #020617;
+  --text-shadow-lg: 0 8px 16px #020617;
+}
 
 .active .hr {
   @apply block;
+}
+
+.active .hr-text {
+  @apply font-bold;
 }
