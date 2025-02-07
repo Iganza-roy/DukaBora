@@ -1,6 +1,7 @@
 import ProductGallery from '../Components/ProductGallery';
 import { IoBagHandleOutline } from 'react-icons/io5';
 import HeroSlider from '../utils/HeroSlider';
+import Reviews from '../Components/Reviews';
 import { FiSearch } from 'react-icons/fi';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
@@ -61,6 +62,9 @@ const Home = () => {
       >
         Show More
       </button>
+      <div>
+        <Reviews />
+      </div>
     </div>
   );
 };
