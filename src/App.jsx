@@ -6,7 +6,10 @@ const clerkKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 const App = () => {
   return (
-    <ClerkProvider publishableKey={clerkKey}>
+    <ClerkProvider
+      publishableKey={clerkKey}
+      navigate={(to) => (window.location.href = to)}
+    >
       <Router>
         <AppRoutes />
       </Router>

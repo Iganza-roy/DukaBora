@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import VerifyEmailPage from './pages/VerifyEmail';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
@@ -24,10 +23,6 @@ const AppRoutes = () => {
       {/* Authentication */}
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
-      <Route
-        path='/register/verify-email-address'
-        element={<VerifyEmailPage />}
-      />
 
       {/* Protected*/}
       <Route path='/cart' element={<Cart />} />
