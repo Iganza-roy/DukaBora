@@ -12,7 +12,7 @@
   --text-shadow-lg: 0 8px 16px #020617;
 }
 
-.active .hr {
+.active hr {
   @apply block;
 }
 

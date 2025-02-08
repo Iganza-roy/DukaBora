@@ -8,61 +8,74 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const navigate = useNavigate();
+
   return (
-    <div className='flex flex-col text-black justify-center items-center'>
-      <div className='flex justify-between bg-gray1 w-280 h-70 pl-4 pt-6 rounded-3xl'>
-        <div className='flex flex-col gap-3'>
-          <h1 className='text-[45px] font-[800] text-primary'>
-            Celebrate Love with Exclusive <br />
+    <div className='flex flex-col text-black items-center justify-center w-full'>
+      {/* Hero Section */}
+      <div className='flex lg:flex-row justify-between items-center bg-gray1 w-full max-w-6xl p-6 rounded-3xl'>
+        {/* Left Content */}
+        <div className='text-center lg:text-left space-y-4'>
+          <h1 className='text-[32px] md:text-[40px] font-[800] text-primary leading-tight'>
+            Celebrate Love with Exclusive <br className='hidden md:block' />
             Valentine’s Discounts!
           </h1>
-          <p>
-            Find the perfect gift for your loved ones this <br />
+          <p className='text-gray-700 text-base md:text-lg'>
+            Find the perfect gift for your loved ones this{' '}
+            <br className='hidden md:block' />
             Valentine’s season!
           </p>
-          <button className='flex justify-center items-center gap-2 bg-primary w-40 cursor-pointer py-2 px-4 rounded-2xl text-black font-bold hover:bg-red-400 hover:transform duration-300 hover:-translate-y-1'>
+          <button className='flex justify-center items-center gap-2 bg-primary w-40 cursor-pointer py-2 px-4 rounded-2xl text-black font-bold hover:bg-red-400 transition duration-300 hover:-translate-y-1 mx-auto lg:mx-0'>
             <p>Shop Now</p>
-            <IoBagHandleOutline className='text-4xl' />
+            <IoBagHandleOutline className='text-2xl md:text-3xl' />
           </button>
         </div>
-        <HeroSlider />
-      </div>
-      <div className='flex justify-center items-center mt-5 gap-10'>
-        <div className='bg-white flex rounded-4xl w-70 h-10 justify-between items-center p-3'>
-          <form action=''>
-            <input
-              type='text'
-              placeholder='Search Products'
-              className='text-gray-700 border-none outline-none w-60'
-            />
-            <button type='submit'>
-              <FiSearch className='text-black hover:text-red-400 hover:transform duration-300 cursor-pointer' />
-            </button>
-          </form>
+        {/* Right Content: Slider */}
+        <div className='w-full hidden md:block max-w-md mt-6 lg:mt-0'>
+          <HeroSlider />
         </div>
-        <button className='flex justify-center items-center bg-white w-27 h-10 rounded-4xl'>
-          <span>Category</span>
-          <IoMdArrowDropdown />
-        </button>
-        <button className='flex justify-center items-center bg-white w-30 h-10 rounded-4xl'>
-          <span>Popularity</span>
-          <IoMdArrowDropdown />
-        </button>
-        <button className='flex justify-center items-center bg-white w-25 h-10 rounded-4xl'>
-          <span>Price</span>
-          <IoMdArrowDropdown />
-        </button>
       </div>
-      <div>
+
+      {/* Filtering / Sorting / Searching */}
+      <div className='flex flex-wrap justify-center items-center mt-5 gap-4 w-full px-4'>
+        {/* Search Bar */}
+        <div className='flex items-center bg-white rounded-full w-full sm:w-80 px-4 py-2'>
+          <input
+            type='text'
+            placeholder='Search Products'
+            className='text-gray-700 border-none outline-none flex-1'
+          />
+          <button type='submit'>
+            <FiSearch className='text-black hover:text-red-400 transition duration-300 cursor-pointer' />
+          </button>
+        </div>
+
+        {/* Dropdown Buttons */}
+        {['Category', 'Popularity', 'Price'].map((filter, index) => (
+          <button
+            key={index}
+            className='flex justify-center items-center bg-white w-36 h-10 rounded-full border border-gray-300 px-4 text-sm'
+          >
+            <span>{filter}</span>
+            <IoMdArrowDropdown />
+          </button>
+        ))}
+      </div>
+
+      {/* Products */}
+      <div className='w-full max-w-6xl px-4'>
         <ProductGallery />
       </div>
+
+      {/* Show More Button */}
       <button
-        className='rounded-lg border border-black w-27 h-9 mt-2 text-sm hover:bg-primary hover:transform duration-300 active:bg-red-300'
+        className='rounded-lg border border-black w-40 h-10 mt-4 text-sm hover:bg-primary transition duration-300 active:bg-red-300'
         onClick={() => navigate('/products')}
       >
         Show More
       </button>
-      <div>
+
+      {/* User Reviews */}
+      <div className='w-full max-w-6xl px-4 mt-10'>
         <Reviews />
       </div>
     </div>

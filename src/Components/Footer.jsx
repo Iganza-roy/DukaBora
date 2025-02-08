@@ -39,7 +39,7 @@ const Footer = () => {
 
   return (
     <div>
-      <div className='flex flex-col lg:flex-row md:justify-between items-center md:items-start gap-10 md:gap-20 my-6 py-10'>
+      <div className='flex flex-col lg:flex-row md:justify-between items-center md:items-start gap-10 md:gap-20 mt-10 py-1'>
         <img
           src={logo}
           alt='logo'

@@ -1,85 +1,141 @@
-import { UserButton, useUser } from '@clerk/clerk-react';
+import { useState } from 'react';
+import { UserButton, useUser, SignInButton } from '@clerk/clerk-react';
 import logo from '../assets/DukaBora.webp';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import { IoCartOutline } from 'react-icons/io5';
+import { HiMenu, HiX } from 'react-icons/hi'; // Icons for mobile menu
 
 const Header = () => {
-  const navigate = useNavigate;
-  const { user } = useUser();
+  const navigate = useNavigate();
+  const { user, isSignedIn } = useUser();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='flex justify-between items-center py-4 px-8'>
-      <img
-        onClick={() => navigate('/')}
-        className='w-20 md:w-40 cursor-pointer hover:-translate-y-0.5 transition-transform duration-300'
-        src={logo}
-        alt='Duka Bora'
-      />
-      <ul className='-mr-18'>
-        <NavLink to='/'>
-          <li className='text-black relative inline-block'>
-            <div className='hr absolute inset-0 bg-white rounded-3xl z-0 hidden transition-all duration-300'></div>
-            <div className='hr-text relative z-10 px-4 py-2 hover:text-red-400'>
-              Home
-            </div>
-          </li>
-        </NavLink>
-        <NavLink to='/products'>
-          <li className='text-black relative inline-block'>
-            <div className='hr absolute inset-0 bg-white rounded-3xl z-0 hidden transition-all duration-300'></div>
-            <div className='hr-text relative z-10 px-4 py-2 hover:text-red-400'>
-              Products
-            </div>
-          </li>
-        </NavLink>
-        <NavLink to='/about'>
-          <li className='text-black relative inline-block'>
-            <div className='hr absolute inset-0 bg-white rounded-3xl z-0 hidden transition-all duration-300'></div>
-            <div className='hr-text relative z-10 px-4 py-2 hover:text-red-400'>
-              About
-            </div>
-          </li>
-        </NavLink>
-        <NavLink to='/support'>
-          <li className='text-black relative inline-block'>
-            <div className='hr absolute inset-0 bg-white rounded-3xl z-0 hidden transition-all duration-300'></div>
-            <div className='hr-text relative z-10 px-4 py-2 hover:text-red-400'>
-              Support
-            </div>
-          </li>
-        </NavLink>
-      </ul>
-      <div className='flex gap-3 border-2 items-center'>
-        <div className='bg-white flex rounded-4xl w-70 h-10 justify-between items-center p-3'>
-          <form action=''>
+    <header>
+      <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-12'>
+        {/* Logo */}
+        <img
+          onClick={() => navigate('/')}
+          className='w-20 md:w-40 cursor-pointer hover:-translate-y-0.5 transition-transform duration-300'
+          src={logo}
+          alt='Duka Bora'
+        />
+
+        {/* Desktop Navigation */}
+        <nav className='hidden md:flex space-x-8'>
+          {['/', '/products', '/about', '/support'].map((path, index) => (
+            <NavLink
+              key={index}
+              to={path}
+              className='text-black relative inline-block px-4 py-2 hover:text-red-400'
+            >
+              {path === '/'
+                ? 'Home'
+                : path.replace('/', '').charAt(0).toUpperCase() + path.slice(2)}
+              <hr className='border-none outline-none h-0.5 bg-primary w-5/5 m-auto hidden' />
+            </NavLink>
+          ))}
+        </nav>
+
+        {/* Search, User & Cart */}
+        <div className='hidden md:flex items-center space-x-4'>
+          {/* Search Bar */}
+          <div className='relative w-64'>
             <input
               type='text'
               placeholder='Search Products'
-              className='text-gray-700 border-none outline-none w-60'
+              className='w-full border rounded-full px-4 py-2 text-gray-700 outline-none'
             />
-            <button type='submit'>
-              <FiSearch className='text-black hover:text-red-400 hover:transform duration-300 cursor-pointer' />
+            <button className='absolute right-3 top-1/2 transform -translate-y-1/2'>
+              <FiSearch className='text-gray-600 hover:text-red-400' />
             </button>
-          </form>
+          </div>
+
+          {/* User Button OR Login */}
+          <div className='flex flex-col items-center'>
+            {isSignedIn ? (
+              <UserButton
+                userProfileMode='modal'
+                className='hover:-translate-y-0.5 transition-transform duration-300'
+              />
+            ) : (
+              <SignInButton mode='modal'>
+                <button className='px-4 py-2 bg-primary text-white rounded-lg hover:bg-red-600 transition'>
+                  Login
+                </button>
+              </SignInButton>
+            )}
+          </div>
+
+          {/* Cart Icon */}
+          <div className='cursor-pointer flex items-center'>
+            <IoCartOutline className='text-black text-3xl hover:-translate-y-0.5 transition-transform duration-300' />
+            <span className='text-black text-sm ml-1'>Cart</span>
+          </div>
         </div>
-        <div className='flex flex-col items-center space-y-1'>
-          <UserButton
-            userProfileMode='modal'
-            className='hover:-translate-y-0.5 transition-transform duration-300'
-          />
-          {user && (
-            <span className='text-sm font-medium text-black'>
-              {user.fullName || user.username}
-            </span>
-          )}
-        </div>
-        <div className='cursor-pointer'>
-          <IoCartOutline className='text-black text-3xl hover:-translate-y-0.5 transition-transform duration-300' />
-          <span className='text-black text-sm'>Cart</span>
-        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className='md:hidden text-3xl text-gray-800'
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <HiX /> : <HiMenu />}
+        </button>
       </div>
-    </div>
+
+      {/* Mobile Navigation Menu */}
+      {isOpen && (
+        <nav className='md:hidden bg-gray-100 py-4'>
+          <ul className='flex flex-col items-center space-y-4'>
+            {['/', '/products', '/about', '/support'].map((path, index) => (
+              <NavLink
+                key={index}
+                to={path}
+                className='text-black text-lg hover:text-red-400'
+                onClick={() => setIsOpen(false)}
+              >
+                {path === '/'
+                  ? 'Home'
+                  : path.replace('/', '').charAt(0).toUpperCase() +
+                    path.slice(2)}
+              </NavLink>
+            ))}
+
+            {/* Search Bar for Mobile */}
+            <div className='relative w-64'>
+              <input
+                type='text'
+                placeholder='Search Products'
+                className='w-full border rounded-full px-4 py-2 text-gray-700 outline-none'
+              />
+              <button className='absolute right-3 top-1/2 transform -translate-y-1/2'>
+                <FiSearch className='text-gray-600 hover:text-red-400' />
+              </button>
+            </div>
+
+            {/* User Button OR Login for Mobile */}
+            <div>
+              {isSignedIn ? (
+                <UserButton userProfileMode='modal' />
+              ) : (
+                <SignInButton mode='modal'>
+                  <button className='px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition'>
+                    Login
+                  </button>
+                </SignInButton>
+              )}
+            </div>
+
+            {/* Cart Icon for Mobile */}
+            <div className='cursor-pointer flex items-center'>
+              <IoCartOutline className='text-black text-3xl hover:-translate-y-0.5 transition-transform duration-300' />
+              <span className='text-black text-sm ml-1'>Cart</span>
+            </div>
+          </ul>
+        </nav>
+      )}
+    </header>
   );
 };
 
