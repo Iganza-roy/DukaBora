@@ -1,5 +1,6 @@
 import ProductGallery from '../Components/ProductGallery';
 import { IoBagHandleOutline } from 'react-icons/io5';
+import { toast } from 'sonner';
 import { useUser } from '@clerk/clerk-react';
 import HeroSlider from '../utils/HeroSlider';
 import Reviews from '../Components/Reviews';
@@ -15,6 +16,7 @@ const Home = () => {
     if (isSignedIn) {
       navigate('/products');
     } else {
+      toast.error('Please sign in to continue shopping');
       navigate('/login');
     }
   }

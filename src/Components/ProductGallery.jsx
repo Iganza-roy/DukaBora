@@ -1,12 +1,14 @@
 import { useEffect, useState, useContext } from 'react';
 import { fetchProducts } from '../utils/api';
+import { useUser } from '@clerk/clerk-react';
 import StarRating from './StarRating';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../Context/CartContext';
 
 const ProductGallery = () => {
-  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+  const { isSignedIn } = useUser();
 
   const { addToCart } = useContext(CartContext);
 
@@ -49,7 +51,11 @@ const ProductGallery = () => {
               <StarRating rating={product.rating.rate} />
               <button
                 className='rounded-2xl border text-black border-primary w-25 h-8 mt-2 text-sm hover:bg-primary hover:transform duration-300 active:bg-red-300'
-                onClick={() => addToCart(product, product.id)}
+                onClick={() =>
+                  isSignedIn
+                    ? addToCart(product, product.id)
+                    : navigate('/login')
+                }
               >
                 Add to Cart
               </button>

@@ -7,6 +7,7 @@ import SideBarProvider from './Context/SideBarContext';
 import './Global.css';
 import './index.css';
 import App from './App.jsx';
+import { Toaster } from 'sonner';
 import { ClerkProvider } from '@clerk/clerk-react';
 
 const clerkKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')).render(
           <SideBarProvider>
             <ProductProvider>
               <App />
+              <Toaster position='top-center' richColors />
             </ProductProvider>
           </SideBarProvider>
         </CartProvider>
