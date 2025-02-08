@@ -11,6 +11,7 @@ const CartItems = () => {
     clearCart,
     increaseAmount,
     decreaseAmount,
+    totalAmount,
   } = useContext(CartContext);
 
   return (
@@ -75,7 +76,8 @@ const CartItems = () => {
         <div>
           <div className='border-t border-primary flex justify-between items-center'>
             <div className='flex w-full items-center uppercase font-bold'>
-              <span className='mr-2 '>Total: </span> $1000
+              <span className='mr-2 '>Total: </span> ${' '}
+              {parseFloat(totalAmount).toFixed(2)}
             </div>
             <div
               className='cursor-pointer py-4 mt-1 text-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300 w-15 h-full flex justify-center items-center text-xl'

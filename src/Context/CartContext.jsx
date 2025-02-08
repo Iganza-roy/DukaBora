@@ -7,6 +7,15 @@ export const CartProvider = ({ children }) => {
 
   const [itemAmount, setItemAmount] = useState(0);
 
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    const total = cartItems.reduce((accumulator, currentItem) => {
+      return accumulator + currentItem.price * currentItem.amount;
+    }, 0);
+    setTotalAmount(total);
+  });
+
   useEffect(() => {
     if (cartItems) {
       const amount = cartItems.reduce((accumulator, currentItem) => {
@@ -80,6 +89,7 @@ export const CartProvider = ({ children }) => {
         increaseAmount,
         decreaseAmount,
         itemAmount,
+        totalAmount,
       }}
     >
       {children}

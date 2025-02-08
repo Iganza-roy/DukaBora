@@ -66,7 +66,7 @@ const Header = () => {
               />
             ) : (
               <SignInButton mode='modal'>
-                <button className='px-4 py-2 bg-primary text-white rounded-lg hover:bg-red-600 transition'>
+                <button className='px-4 py-2 bg-primary text-white rounded-lg hover:bg-red-600 transition cursor-pointer'>
                   Login
                 </button>
               </SignInButton>

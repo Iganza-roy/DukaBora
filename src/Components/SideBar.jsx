@@ -7,8 +7,8 @@ import { useContext } from 'react';
 import { CartContext } from '../Context/CartContext';
 
 const SideBar = () => {
+  const { itemAmount } = useContext(CartContext);
   const { isOpen, handleClose } = useContext(SideBarContext);
-  const cart = useContext(CartContext);
 
   return (
     <div
@@ -17,7 +17,9 @@ const SideBar = () => {
     >
       {/* Close Button */}
       <div className='flex justify-between items-center py-4 border-b'>
-        <h2 className='text-black text-lg font-bold'>Shopping Cart (0)</h2>
+        <h2 className='text-black text-lg font-bold'>
+          Shopping Cart ({itemAmount})
+        </h2>
         <button
           onClick={handleClose}
           className='text-gray-600 hover:text-black'
