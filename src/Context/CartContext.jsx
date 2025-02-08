@@ -5,6 +5,8 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
+  const [itemAmount, setItemAmount] = useState(0)
+
   // Add to Cart
   const addToCart = (product, id) => {
     const newItem = { ...product, amount: 1 };
@@ -38,9 +40,38 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
+  const increaseAmount = (id) => {
+    const cartItem = cartItems.find((item) => item.id === id);
+    addToCart(cartItem, id);
+  };
+
+  const decreaseAmount = (id) => {
+    const cartItem = cartItems.find((item) => {
+      return item.id === id;
+    });
+    if (cartItem) {
+      const newCart = cartItems.map((item) => {
+        if (item.id === id) {
+          return { ...item, amount: cartItem.amount - 1 };
+        } else {
+          return item;
+        }
+      });
+      setCartItems(newCart);
+    }
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, clearCart }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        increaseAmount,
+        decreaseAmount,
+        itemAmount
+      }}
     >
       {children}
     </CartContext.Provider>

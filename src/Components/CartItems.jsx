@@ -5,7 +5,13 @@ import { IoMdAdd, IoMdClose, IoMdRemove } from 'react-icons/io';
 import { FiTrash2 } from 'react-icons/fi';
 
 const CartItems = () => {
-  const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
+  const {
+    cartItems,
+    removeFromCart,
+    clearCart,
+    increaseAmount,
+    decreaseAmount,
+  } = useContext(CartContext);
 
   return (
     <div className='text-black flex flex-col gap-x-4 py-2 border-b border-primary w-full font--light '>
@@ -38,13 +44,19 @@ const CartItems = () => {
                 <div className='flex gap-x-2 h-[36px] pl-4'>
                   <div className='flex flex-1 max-w-[100px] items-center text-gray-500 h-full border rounded-lg font-medium'>
                     <div className='flex-1 h-full text-sm flex justify-center items-center cursor-pointer'>
-                      <IoMdRemove />
+                      <IoMdRemove
+                        className='hover:text-primary'
+                        onClick={() => decreaseAmount(item.id)}
+                      />
                     </div>
                     <div className='h-full flex text-sm justify-center items-center px-2'>
                       {item.amount}
                     </div>
-                    <div className='flex-1 h-full text-sm flex justify-center items-center cursor-pointer'>
-                      <IoMdAdd />
+                    <div
+                      onClick={() => increaseAmount(item.id)}
+                      className='flex-1 h-full text-sm flex justify-center items-center cursor-pointer'
+                    >
+                      <IoMdAdd className='hover:text-primary' />
                     </div>
                   </div>
                   <div className='flex-1 flex justify-around items-center text-gray-500'>

@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { SideBarContext } from '../Context/SideBarContext';
+import { CartContext } from '../Context/CartContext';
 import { UserButton, useUser, SignInButton } from '@clerk/clerk-react';
 import logo from '../assets/DukaBora.webp';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -11,8 +12,9 @@ import SideBar from './SideBar';
 const Header = () => {
   const { handleOpen } = useContext(SideBarContext);
   const navigate = useNavigate();
-  const { user, isSignedIn } = useUser();
+  const { isSignedIn } = useUser();
   const [isOpen, setIsOpen] = useState(false);
+  const { itemAmount } = useContext(CartContext);
 
   return (
     <header>
@@ -73,11 +75,14 @@ const Header = () => {
 
           {/* Cart Icon */}
           <div
-            className='cursor-pointer flex items-center'
+            className='cursor-pointer flex flex-col items-center relative'
             onClick={handleOpen}
           >
             <IoCartOutline className='text-black text-3xl hover:-translate-y-0.5 transition-transform duration-300' />
-            <span className='text-black text-sm ml-1'>Cart</span>
+            <div className='bg-primary absolute -top-2 -right-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center font-bold'>
+              {itemAmount}
+            </div>
+            <span className='text-black text-sm'>Cart</span>
           </div>
         </div>
 
