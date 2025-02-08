@@ -3,7 +3,7 @@ import ClientReviews from '../assets/ReviewsData';
 
 const Reviews = () => {
   return (
-    <div className='flex flex-col md:flex-row items-center justify-center md:justify-between  md:w-220 md:gap-5 gap-10'>
+    <div className='flex flex-col md:flex-row items-center justify-center md:justify-between md:w-220 md:gap-5 gap-10'>
       <div className='relative group mt-4 hover:shadow-md px-3 py-3 h-[350px] w-[300px] lg:h-[400px] lg:w-[360px]'>
         <div
           className='absolute inset-0 bg-cover rounded-4xl bg-center group-hover:shadow-lg group-hover:shadow-blue/30 group-hover:rotate-1 group-hover:scale-105 transition-all duration-300 ease-in-out hover:skew-x-2 hover:skew-y-1'

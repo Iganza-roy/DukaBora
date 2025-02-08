@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { SideBarContext } from '../Context/SideBarContext';
 import { UserButton, useUser, SignInButton } from '@clerk/clerk-react';
 import logo from '../assets/DukaBora.webp';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import { IoCartOutline } from 'react-icons/io5';
-import { HiMenu, HiX } from 'react-icons/hi'; // Icons for mobile menu
+import { HiMenu, HiX } from 'react-icons/hi';
+import SideBar from './SideBar';
 
 const Header = () => {
+  const { handleOpen } = useContext(SideBarContext);
   const navigate = useNavigate();
   const { user, isSignedIn } = useUser();
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +41,7 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Search, User & Cart */}
+        {/* Desktop Search, User & Cart */}
         <div className='hidden md:flex items-center space-x-4'>
           {/* Search Bar */}
           <div className='relative w-64'>
@@ -69,19 +72,33 @@ const Header = () => {
           </div>
 
           {/* Cart Icon */}
-          <div className='cursor-pointer flex items-center'>
+          <div
+            className='cursor-pointer flex items-center'
+            onClick={handleOpen}
+          >
             <IoCartOutline className='text-black text-3xl hover:-translate-y-0.5 transition-transform duration-300' />
             <span className='text-black text-sm ml-1'>Cart</span>
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className='md:hidden text-3xl text-gray-800'
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <HiX /> : <HiMenu />}
-        </button>
+        {/* Mobile Cart + Menu */}
+        <div className='md:hidden flex items-center space-x-4'>
+          {/* Cart Icon - Placed before the menu */}
+          <div
+            className='cursor-pointer flex items-center'
+            onClick={handleOpen}
+          >
+            <IoCartOutline className='text-black text-3xl hover:-translate-y-0.5 transition-transform duration-300' />
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className='text-3xl text-gray-800'
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <HiX /> : <HiMenu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation Menu */}
@@ -126,15 +143,10 @@ const Header = () => {
                 </SignInButton>
               )}
             </div>
-
-            {/* Cart Icon for Mobile */}
-            <div className='cursor-pointer flex items-center'>
-              <IoCartOutline className='text-black text-3xl hover:-translate-y-0.5 transition-transform duration-300' />
-              <span className='text-black text-sm ml-1'>Cart</span>
-            </div>
           </ul>
         </nav>
       )}
+      <SideBar />
     </header>
   );
 };

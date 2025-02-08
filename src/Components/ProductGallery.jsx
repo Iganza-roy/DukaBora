@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { fetchProducts } from '../utils/api';
 import StarRating from './StarRating';
 import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../Context/CartContext';
 
 const ProductGallery = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -18,10 +21,7 @@ const ProductGallery = () => {
 
   return (
     <div className='w-full p-6'>
-      <div
-        className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer'
-        onClick={() => navigate('/products/${product.id}')}
-      >
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer'>
         {products.length > 0 ? (
           products.map((product) => (
             <div
@@ -32,9 +32,13 @@ const ProductGallery = () => {
                 src={product.image}
                 alt={product.title}
                 className='w-full h-60 object-cover rounded-xl shadow-sm'
+                onClick={() => navigate(`/product/${product.id}`)}
               />
               <div className='flex justify-between items-center'>
-                <h3 className='text-md text-black font-bold truncate w-45'>
+                <h3
+                  className='text-md text-black font-bold truncate w-45'
+                  onClick={() => navigate(`/product/${product.id}`)}
+                >
                   {product.title}
                 </h3>
                 <p className='text-sm text-black font-bold'>${product.price}</p>
@@ -43,7 +47,10 @@ const ProductGallery = () => {
                 {product.description}
               </p>
               <StarRating rating={product.rating.rate} />
-              <button className='rounded-2xl border text-black border-primary w-25 h-8 mt-2 text-sm hover:bg-primary hover:transform duration-300 active:bg-red-300'>
+              <button
+                className='rounded-2xl border text-black border-primary w-25 h-8 mt-2 text-sm hover:bg-primary hover:transform duration-300 active:bg-red-300'
+                onClick={() => addToCart(product, product.id)}
+              >
                 Add to Cart
               </button>
             </div>
