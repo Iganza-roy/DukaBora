@@ -39,7 +39,9 @@ const HeroSlider = () => {
           ))}
         </Swiper>
       ) : (
-        <p>Loading images...</p>
+        <p className='text-center col-span-full text-gray-500'>
+          Loading images...
+        </p>
       )}
     </div>
   );
