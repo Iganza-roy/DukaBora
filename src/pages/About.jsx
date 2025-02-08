@@ -71,14 +71,14 @@ const About = () => {
 
       <section>
         <h3 className='text-2xl text-black font-bold mb-4'>Our Offices</h3>
-        <div className='bg-gray-100 p-6 rounded-2xl shadow-md flex gap-5 justify-center items-center'>
+        <div className='bg-gray-100 p-6 rounded-2xl shadow-md flex flex-col md:flex-row gap-5 justify-center items-center'>
           <iframe
             src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.81707950275!2d36.822514874437985!3d-1.2836287356220994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1129d3e9e4a7%3A0xd7a2234ccaf4740e!2sTom%20Mboya%20St%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1728472153114!5m2!1sen!2ske'
             style={{ border: 0 }}
             allowfullscreen=''
             loading='lazy'
             referrerPolicy='no-referrer-when-downgrade'
-            className='rounded-lg h-[300px] w-[400px] md:h-[400px] md:w-[600px]'
+            className='rounded-lg h-[300px] w-[200px] md:h-[400px] md:w-[600px]'
           ></iframe>
           <div>
             <div className='flex flex-col gap-6 m-auto'>
