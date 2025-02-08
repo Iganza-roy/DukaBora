@@ -1,7 +1,20 @@
+import { useNavigate } from 'react-router-dom';
 import clientHandshake from '../assets/handshake.jpg';
 import ClientReviews from '../assets/ReviewsData';
+import { useUser } from '@clerk/clerk-react';
 
 const Reviews = () => {
+  const navigate = useNavigate();
+  const { isSignedIn } = useUser();
+
+  const handleshopButton = () => {
+    if (isSignedIn) {
+      navigate('/products');
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <div className='flex flex-col md:flex-row items-center justify-center md:justify-between md:w-220 md:gap-5 gap-10'>
       <div className='relative group mt-4 hover:shadow-md px-3 py-3 h-[350px] w-[300px] lg:h-[400px] lg:w-[360px]'>
@@ -19,7 +32,12 @@ const Reviews = () => {
               Join Our Happy Customers
             </h1>
             <div className='flex justify-between items-center'>
-              <button className=' bg-white w-28 cursor-pointer py-2 px-2 rounded-2xl text-black font-[600] hover:bg-red-100 hover:transform duration-300 hover:-translate-y-1'>
+              <button
+                className=' bg-white w-28 cursor-pointer py-2 px-2 rounded-2xl text-black font-[600] hover:bg-red-100 hover:transform duration-300 hover:-translate-y-1'
+                onClick={() => {
+                  handleshopButton();
+                }}
+              >
                 <p>Shop Now!</p>
               </button>
               <p className='text-4xl text-white font-[700]'>5k+</p>

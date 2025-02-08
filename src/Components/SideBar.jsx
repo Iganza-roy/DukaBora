@@ -32,9 +32,10 @@ const SideBar = () => {
       <CartItems />
 
       {/* Checkout Button */}
+
       <div className='p-4'>
         <button className='w-full bg-primary text-white py-2 rounded-lg hover:bg-red-400'>
-          Proceed to Checkout
+          Confirm Order
         </button>
       </div>
     </div>

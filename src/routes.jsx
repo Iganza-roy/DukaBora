@@ -7,7 +7,6 @@ import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
 import About from './pages/About';
 import Support from './pages/Support';
-import Cart from './pages/Cart';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 
@@ -18,10 +17,9 @@ const AppRoutes = () => {
       <Route element={<Layout />}>
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<Products />} />
-        <Route path='/products/:id' element={<ProductDetails />} />
+        <Route path='/product/:id' element={<ProductDetails />} />
         <Route path='/about' element={<About />} />
         <Route path='/support' element={<Support />} />
-        <Route path='/cart' element={<Cart />} />
       </Route>
 
       {/* Authentication */}

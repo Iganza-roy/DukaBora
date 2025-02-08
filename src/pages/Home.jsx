@@ -1,5 +1,6 @@
 import ProductGallery from '../Components/ProductGallery';
 import { IoBagHandleOutline } from 'react-icons/io5';
+import { useUser } from '@clerk/clerk-react';
 import HeroSlider from '../utils/HeroSlider';
 import Reviews from '../Components/Reviews';
 import { FiSearch } from 'react-icons/fi';
@@ -8,6 +9,15 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const navigate = useNavigate();
+  const { isSignedIn } = useUser();
+
+  const handleshopButton = () => {
+    if (isSignedIn) {
+      navigate('/products');
+    } else {
+      navigate('/login');
+    }
+  }
 
   return (
     <div className='flex flex-col text-black items-center justify-center w-full'>
@@ -24,7 +34,11 @@ const Home = () => {
             <br className='hidden md:block' />
             Valentine’s season!
           </p>
-          <button className='flex justify-center items-center gap-2 bg-primary w-40 cursor-pointer py-2 px-4 rounded-2xl text-black font-bold hover:bg-red-400 transition duration-300 hover:-translate-y-1 mx-auto lg:mx-0'>
+          <button
+            className='flex justify-center items-center gap-2 bg-primary w-40 cursor-pointer py-2 px-4 rounded-2xl text-black font-bold hover:bg-red-400 transition duration-300 hover:-translate-y-1 mx-auto lg:mx-0'
+            onClick={() => {handleshopButton()
+            }}
+          >
             <p>Shop Now</p>
             <IoBagHandleOutline className='text-2xl md:text-3xl' />
           </button>

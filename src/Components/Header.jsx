@@ -74,16 +74,18 @@ const Header = () => {
           </div>
 
           {/* Cart Icon */}
-          <div
-            className='cursor-pointer flex flex-col items-center relative'
-            onClick={handleOpen}
-          >
-            <IoCartOutline className='text-black text-3xl hover:-translate-y-0.5 transition-transform duration-300' />
-            <div className='bg-primary absolute -top-2 -right-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center font-bold'>
-              {itemAmount}
+          {isSignedIn && (
+            <div
+              className='cursor-pointer flex flex-col items-center relative'
+              onClick={handleOpen}
+            >
+              <IoCartOutline className='text-black text-3xl hover:-translate-y-0.5 transition-transform duration-300' />
+              <div className='bg-primary absolute -top-2 -right-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center font-bold'>
+                {itemAmount}
+              </div>
+              <span className='text-black text-sm'>Cart</span>
             </div>
-            <span className='text-black text-sm'>Cart</span>
-          </div>
+          )}
         </div>
 
         {/* Mobile Cart + Menu */}
