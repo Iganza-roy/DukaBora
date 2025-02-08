@@ -1,11 +1,11 @@
-import React from 'react'
+import ProductGallery from '../Components/ProductGallery';
 
 const Products = () => {
   return (
     <div>
-      
+      <ProductGallery />
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

@@ -34,16 +34,16 @@ const ProductGallery = () => {
                 className='w-full h-60 object-cover rounded-xl shadow-sm'
               />
               <div className='flex justify-between items-center'>
-                <h3 className='text-md font-bold truncate w-45'>
+                <h3 className='text-md text-black font-bold truncate w-45'>
                   {product.title}
                 </h3>
                 <p className='text-sm text-black font-bold'>${product.price}</p>
               </div>
-              <p className='truncate w-50 text-xs font-light'>
+              <p className='truncate w-50 text-black text-xs font-light'>
                 {product.description}
               </p>
               <StarRating rating={product.rating.rate} />
-              <button className='rounded-2xl border border-primary w-25 h-8 mt-2 text-sm hover:bg-primary hover:transform duration-300 active:bg-red-300'>
+              <button className='rounded-2xl border text-black border-primary w-25 h-8 mt-2 text-sm hover:bg-primary hover:transform duration-300 active:bg-red-300'>
                 Add to Cart
               </button>
             </div>
