@@ -1,13 +1,52 @@
 import axios from 'axios';
+import { toast } from 'sonner';
+
+const BASE_URL = 'https://fakestoreapi.com/products';
 
 export const fetchProducts = async () => {
   try {
-    const response = await axios.get('https://fakestoreapi.com/products');
+    const response = await axios.get(BASE_URL);
     console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching products:', error.message);
     return [];
+  }
+};
+
+export const createProduct = async (productData) => {
+  try {
+    const response = await axios.post(BASE_URL, productData);
+    toast.success('Product created successfully');
+    console.log('Product created:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating product:', error.message);
+    throw new Error('Failed to create product');
+  }
+};
+
+export const updateProduct = async (productId, updatedData) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/${productId}`, updatedData);
+    toast.success('Product updated successfully');
+    console.log('Product updated:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating product:', error.message);
+    throw new Error('Failed to update product');
+  }
+};
+
+export const deleteProduct = async (productId) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/${productId}`);
+    toast.success('Product deleted successfully');
+    console.log('Product deleted:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting product:', error.message);
+    throw new Error('Failed to delete product');
   }
 };
 
