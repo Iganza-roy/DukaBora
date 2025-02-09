@@ -27,6 +27,7 @@ import {
   TextField,
   IconButton,
 } from '@mui/material';
+import { UserButton } from '@clerk/clerk-react';
 import { Delete, Edit } from '@mui/icons-material';
 
 ChartJS.register(
@@ -114,8 +115,12 @@ const AdminDashboard = () => {
       <Typography
         variant='h4'
         sx={{ color: '#FF5757', fontWeight: 'bold', mb: 4 }}
+        className='flex justify-between'
       >
-        Admin <span className='text-black'>Dashboard</span>
+        <div>
+          Admin <span className='text-black'>Dashboard</span>
+        </div>
+        <UserButton class/>
       </Typography>
 
       <Grid container spacing={3} className='bg-white p-4 rounded-lg shadow-xl'>

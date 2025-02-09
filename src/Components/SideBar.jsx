@@ -4,6 +4,7 @@ import { FiTrash2 } from 'react-icons/fi';
 import CartItems from './CartItems';
 import { SideBarContext } from '../Context/SideBarContext';
 import { useContext } from 'react';
+import { toast } from 'sonner';
 import { CartContext } from '../Context/CartContext';
 
 const SideBar = () => {
@@ -34,7 +35,10 @@ const SideBar = () => {
       {/* Checkout Button */}
 
       <div className='p-4'>
-        <button className='w-full bg-primary text-white py-2 rounded-lg hover:bg-red-400'>
+        <button
+          className='w-full bg-primary text-white py-2 rounded-lg hover:bg-red-400'
+          onClick={() => toast.success('Order Confirmed')}
+        >
           Confirm Order
         </button>
       </div>
