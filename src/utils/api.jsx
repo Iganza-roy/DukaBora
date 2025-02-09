@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { toast } from 'sonner';
+import process from 'process';
 
-const BASE_URL = 'https://fakestoreapi.com/products';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+const PEXELS_API_KEY = process.env.REACT_APP_PEXELS_API_KEY;
+const PEXELS_API_URL = process.env.REACT_APP_PEXELS_API_URL;
 
 export const fetchProducts = async () => {
   try {
@@ -48,10 +51,6 @@ export const deleteProduct = async (productId) => {
     throw new Error('Failed to delete product');
   }
 };
-
-const PEXELS_API_KEY =
-  'MT6U56AKkZg0NEAZYXckXFxpeizoZ63x3JCTJLfS8HUFFnCBGqmPJiew';
-const PEXELS_API_URL = 'https://api.pexels.com/v1/search';
 
 /**
  * Fetch jewelry images from Pexels API

@@ -9,7 +9,7 @@ import About from './pages/About';
 import Support from './pages/Support';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
-import AdminRoute from './components/AdminRoute';
+import AdminRoute from './Components/AdminRoute';
 
 const AppRoutes = () => {
   return (
