@@ -4,19 +4,22 @@ import { fetchProducts } from '../utils/api';
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const getProducts = async () => {
       const data = await fetchProducts();
-      setProducts(data);
+      setAllProducts(data);
     };
 
     getProducts();
   }, []);
 
   return (
-    <ProductContext.Provider value={{ products }}>
+    <ProductContext.Provider
+      value={{ allProducts, searchQuery, setSearchQuery }}
+    >
       {children}
     </ProductContext.Provider>
   );

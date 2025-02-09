@@ -4,12 +4,13 @@ import { useUser } from '@clerk/clerk-react';
 import StarRating from './StarRating';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../Context/CartContext';
+import { useProducts } from '../Context/ProductContext';
 
 const ProductGallery = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const { isSignedIn } = useUser();
-
+  const { searchQuery } = useProducts();
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
@@ -21,11 +22,18 @@ const ProductGallery = () => {
     getProducts();
   }, []);
 
+  const filteredProducts = searchQuery
+    ? products.filter((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : products;
+    
+
   return (
     <div className='w-full p-6'>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer'>
-        {products.length > 0 ? (
-          products.map((product) => (
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
             <div
               key={product.id}
               className='rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300'

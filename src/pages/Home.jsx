@@ -7,10 +7,12 @@ import Reviews from '../Components/Reviews';
 import { FiSearch } from 'react-icons/fi';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
+import { useProducts } from '../Context/ProductContext';
 
 const Home = () => {
   const navigate = useNavigate();
   const { isSignedIn } = useUser();
+  const { setSearchQuery } = useProducts();
 
   const handleshopButton = () => {
     if (isSignedIn) {
@@ -19,7 +21,14 @@ const Home = () => {
       toast.error('Please sign in to continue shopping');
       navigate('/login');
     }
-  }
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = e.target.search.value.trim();
+    setSearchQuery(query);
+    navigate('/products');
+  };
 
   return (
     <div className='flex flex-col text-black items-center justify-center w-full'>
@@ -38,7 +47,8 @@ const Home = () => {
           </p>
           <button
             className='flex justify-center items-center gap-2 bg-primary w-40 cursor-pointer py-2 px-4 rounded-2xl text-black font-bold hover:bg-red-400 transition duration-300 hover:-translate-y-1 mx-auto lg:mx-0'
-            onClick={() => {handleshopButton()
+            onClick={() => {
+              handleshopButton();
             }}
           >
             <p>Shop Now</p>
@@ -54,15 +64,22 @@ const Home = () => {
       {/* Filtering / Sorting / Searching */}
       <div className='flex flex-wrap justify-center items-center mt-5 gap-4 w-full px-4'>
         {/* Search Bar */}
-        <div className='flex items-center bg-white rounded-full w-full sm:w-80 px-4 py-2'>
-          <input
-            type='text'
-            placeholder='Search Products'
-            className='text-gray-700 border-none outline-none flex-1'
-          />
-          <button type='submit'>
-            <FiSearch className='text-black hover:text-red-400 transition duration-300 cursor-pointer' />
-          </button>
+
+        <div className='flex bg-white rounded-full sm:w-80 px-4 py-2'>
+          <form
+            onSubmit={handleSearch}
+            className='flex items-center justify-between w-full'
+          >
+            <input
+              type='text'
+              name='search'
+              placeholder='Search Products'
+              className='text-gray-700 border-none outline-none flex-1'
+            />
+            <button type='submit'>
+              <FiSearch className='text-black hover:text-red-400 transition duration-300 cursor-pointer' />
+            </button>
+          </form>
         </div>
 
         {/* Dropdown Buttons */}

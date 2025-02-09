@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { SideBarContext } from '../Context/SideBarContext';
 import { CartContext } from '../Context/CartContext';
+import { useProducts } from '../Context/ProductContext';
 import { UserButton, useUser, SignInButton } from '@clerk/clerk-react';
 import logo from '../assets/DukaBora.webp';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -15,7 +16,15 @@ const Header = () => {
   const { isSignedIn } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const { itemAmount } = useContext(CartContext);
+  const { setSearchQuery } = useProducts();
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = e.target.search.value.trim();
+    setSearchQuery(query);
+    navigate('/products');
+  };
+  
   return (
     <header>
       <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-12'>
@@ -47,14 +56,20 @@ const Header = () => {
         <div className='hidden md:flex items-center space-x-4'>
           {/* Search Bar */}
           <div className='relative w-64'>
-            <input
-              type='text'
-              placeholder='Search Products'
-              className='w-full border rounded-full px-4 py-2 text-gray-700 outline-none'
-            />
-            <button className='absolute right-3 top-1/2 transform -translate-y-1/2'>
-              <FiSearch className='text-gray-600 hover:text-red-400' />
-            </button>
+            <form onSubmit={handleSearch}>
+              <input
+                type='text'
+                name='search'
+                placeholder='Search Products'
+                className='w-full border rounded-full px-4 py-2 text-gray-700 outline-none'
+              />
+              <button
+                type='submit'
+                className='absolute right-3 top-1/2 transform -translate-y-1/2'
+              >
+                <FiSearch className='text-gray-600 hover:text-red-400' />
+              </button>
+            </form>
           </div>
 
           {/* User Button OR Login */}
@@ -131,14 +146,20 @@ const Header = () => {
 
             {/* Search Bar for Mobile */}
             <div className='relative w-64'>
-              <input
-                type='text'
-                placeholder='Search Products'
-                className='w-full border rounded-full px-4 py-2 text-gray-700 outline-none'
-              />
-              <button className='absolute right-3 top-1/2 transform -translate-y-1/2'>
-                <FiSearch className='text-gray-600 hover:text-red-400' />
-              </button>
+              <form onSubmit={handleSearch}>
+                <input
+                  type='text'
+                  name='search'
+                  placeholder='Search Products'
+                  className='w-full border rounded-full px-4 py-2 text-gray-700 outline-none'
+                />
+                <button
+                  type='submit'
+                  className='absolute right-3 top-1/2 transform -translate-y-1/2'
+                >
+                  <FiSearch className='text-gray-600 hover:text-red-400' />
+                </button>
+              </form>
             </div>
 
             {/* User Button OR Login for Mobile */}
