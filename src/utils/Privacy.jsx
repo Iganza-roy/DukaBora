@@ -1,4 +1,4 @@
-const privacy = ({ onClose }) => {
+const Privacy = ({ onClose }) => {
   return (
     <div className='fixed inset-0 bg-dark bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50 '>
       <div className='bg-gray1 p-6 rounded-md shadow-md w-full max-w-md'>
@@ -36,4 +36,4 @@ const privacy = ({ onClose }) => {
   );
 };
 
-export default privacy;
+export default Privacy;
