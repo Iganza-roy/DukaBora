@@ -10,7 +10,7 @@ import { FaPhoneAlt, FaFacebookF } from 'react-icons/fa';
 import { BiSolidMessageSquareDetail } from 'react-icons/bi';
 import { useState } from 'react';
 import TermsModal from '../utils/TermsConditions';
-import Privacy from '../utils/privacy';
+import Privacy from '../utils/Privacy';
 import FAQ from '../utils/FAQ';
 import Legal from '../utils/Legal';
 import Cookies from '../utils/Cookies';
