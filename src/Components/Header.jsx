@@ -13,7 +13,7 @@ import SideBar from './SideBar';
 const Header = () => {
   const { handleOpen } = useContext(SideBarContext);
   const navigate = useNavigate();
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const { itemAmount } = useContext(CartContext);
   const { setSearchQuery } = useProducts();
@@ -24,7 +24,7 @@ const Header = () => {
     setSearchQuery(query);
     navigate('/products');
   };
-  
+
   return (
     <header>
       <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-12'>
@@ -75,10 +75,13 @@ const Header = () => {
           {/* User Button OR Login */}
           <div className='flex flex-col items-center'>
             {isSignedIn ? (
-              <UserButton
-                userProfileMode='modal'
-                className='hover:-translate-y-0.5 transition-transform duration-300'
-              />
+              <div className='flex flex-col items-center'>
+                <UserButton
+                  userProfileMode='modal'
+                  className='hover:-translate-y-0.5 transition-transform duration-300'
+                />
+                <p className='text-black text-xs'>{user?.username}</p>
+              </div>
             ) : (
               <SignInButton mode='modal'>
                 <button className='px-4 py-2 bg-primary text-white rounded-lg hover:bg-red-600 transition cursor-pointer'>
