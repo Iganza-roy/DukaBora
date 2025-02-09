@@ -9,6 +9,7 @@ import About from './pages/About';
 import Support from './pages/Support';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminRoute from './components/AdminRoute';
 
 const AppRoutes = () => {
   return (
@@ -28,7 +29,9 @@ const AppRoutes = () => {
 
       {/* Protected*/}
       <Route path='/admin/login' element={<AdminLogin />} />
-      <Route path='/admin/dashboard' element={<AdminDashboard />} />
+      <Route element={<AdminRoute />}>
+        <Route path='/admin/dashboard' element={<AdminDashboard />} />
+      </Route>
     </Routes>
   );
 };
