@@ -92,10 +92,13 @@ const Header = () => {
         <div className='md:hidden flex items-center space-x-4'>
           {/* Cart Icon - Placed before the menu */}
           <div
-            className='cursor-pointer flex items-center'
+            className='cursor-pointer flex items-center relative'
             onClick={handleOpen}
           >
             <IoCartOutline className='text-black text-3xl hover:-translate-y-0.5 transition-transform duration-300' />
+            <div className='bg-primary absolute -top-2 -right-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center font-bold'>
+              {itemAmount}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
