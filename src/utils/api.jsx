@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { toast } from 'sonner';
-import process from 'process';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
-const PEXELS_API_KEY = process.env.REACT_APP_PEXELS_API_KEY;
-const PEXELS_API_URL = process.env.REACT_APP_PEXELS_API_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+const PEXELS_API_KEY = import.meta.env.VITE_PEXELS_API_KEY;
+const PEXELS_API_URL = import.meta.env.VITE_PEXELS_API_URL;
 
 export const fetchProducts = async () => {
   try {
