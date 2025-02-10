@@ -14,8 +14,8 @@
     <li><a href="#setup">Setup Instructions</a></li>
     <li><a href="#dependancies">Dependancy Installation</a></li>
     <li><a href="#running-the-project">Running the Project</a></li>
-    <li><a href="#structure">Project Structure</a></li>
-    <li><a href="#admin">Admin Account Details</a></li>
+    <li><a href="#project-structure">Project Structure</a></li>
+    <li><a href="#admin-details">Admin Account Details</a></li>
     <li><a href="#contributing">Contrubuting</a></li>
     <li><a href="#liscence">Liscence</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -88,7 +88,7 @@ npm start
 
 This will start the development server, and you can access the project at `http://localhost:3000`.
 
-<!--STRUCTURE-->
+<!--PROJECT STRUCTURE-->
 
 ## Project Structure
 
@@ -110,7 +110,7 @@ src
 
 - **Frontend:** Built with React, using Vite as the bundler.
 
-<!--admin-->
+<!--ADMIN DETAILS-->
 
 ## Admin Account Details
 
