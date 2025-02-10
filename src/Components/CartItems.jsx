@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../Context/CartContext';
 import { IoMdAdd, IoMdClose, IoMdRemove } from 'react-icons/io';
 import { FiTrash2 } from 'react-icons/fi';
+import { toast } from 'sonner';
 
 const CartItems = () => {
   const {

@@ -120,7 +120,7 @@ The admin dashboard is accessible via the `/admin/dashboard` route. This route i
 
 ### Admin Login Credentials
 
-Use the following credentials to log in as an admin:
+navigate to the `admin/login` page use the following credentials to log in as an admin:
 
 - **Email**: mccoy6247@gmail.com
 - **Password**: admin@duka

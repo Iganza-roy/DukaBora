@@ -3,7 +3,7 @@ import { SignIn } from '@clerk/clerk-react';
 const AdminLogin = () => {
   return (
     <div className='flex justify-center items-center h-screen'>
-      <SignIn  />
+      <SignIn fallbackRedirectUrl={'/admin/dashboard'} />
     </div>
   );
 };
