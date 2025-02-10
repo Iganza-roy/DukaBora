@@ -10,7 +10,7 @@ import { FaPhoneAlt, FaFacebookF } from 'react-icons/fa';
 import { BiSolidMessageSquareDetail } from 'react-icons/bi';
 import { useState } from 'react';
 import TermsModal from '../utils/TermsConditions';
-import Privacy from '../utils/Privacy';
+// import Privacy from '../utils/Privacy';
 import FAQ from '../utils/FAQ';
 import Legal from '../utils/Legal';
 import Cookies from '../utils/Cookies';
@@ -60,7 +60,7 @@ const Footer = () => {
           >
             Privacy Policy
           </a>
-          {activeModal === 'privacy' && <Privacy onClose={closeModal} />}
+          {activeModal === 'privacy' && <Cookies onClose={closeModal} />}
           <a
             className='text-black text-lg hover:text-primary hover:underline cursor-pointer'
             onClick={() => setActiveModal('faq')}
